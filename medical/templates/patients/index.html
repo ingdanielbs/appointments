@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3 class="text-center">Pacientes</h3>
+<!-- Button trigger modal -->
+<button
+    type="button"
+    class="btn btn-primary btn-lg"
+    data-bs-toggle="modal"
+    data-bs-target="#modalId"
+>
+   Registrar
+</button>
+
+<div class="table-responsive">
+    <table class="table table-primary datatable-init-export">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Documento</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Teléfono</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for patient in patients %}    
+            <tr>
+                <td>{{ patient.id }}</td>
+                <td>{{ patient.first_name }}</td>
+                <td>{{ patient.last_name }}</td>
+                <td>{{ patient.document }}</td>
+                <td>{{ patient.email }}</td>
+                <td>{{ patient.phone }}</td>
+
+                <td>
+                    <a href="{% url 'edit_patient' patient.id %}"><i class="fas fa-edit text-info mx-1"></i></a>                    
+                    <a href="{% url 'delete_patient' patient.id %}"><i class="fas fa-trash text-danger mx-1"></i></a>                    
+                </td>
+            </tr>            
+            {% endfor %}        
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal crear -->
+<div  class="modal fade" id="modalId" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitleId">
+                    Registro de paciente
+                </h5>
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                ></button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post">
+                {% csrf_token %}
+                {% include 'patients/form.html' %}
+            </div>
+            <div class="modal-footer">
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                >
+                   Cerrar
+                </button>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% if messages %}
+    {% for message in messages %}
+        <script>
+            Swal.fire({
+                title: "{{ message.tags }}",
+                text: "{{ message }}",
+                icon: "{{ message.tags }}"
+            });
+        </script>
+    {% endfor %}
+{% endif %}
+
+{% endblock %}
