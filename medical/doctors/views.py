@@ -8,7 +8,6 @@ from specialties.models import Specialty
 def doctors(request):
     form = DoctorForm(request.POST or None)
     doctors = Doctor.objects.all()
-    specialties = Specialty.objects.all()
     if form.is_valid() and request.method == 'POST':
         try:
             form.save()
@@ -17,7 +16,7 @@ def doctors(request):
         except:
             messages.error(request, 'Ocurrió un error al registrar el doctor.')
             return redirect('doctors')    
-    return render(request, "doctors/index.html", {'form': form, 'doctors':doctors, 'specialties':specialties})
+    return render(request, "doctors/index.html", {'form': form, 'doctors':doctors})
 
 def delete_doctor(request, id):
     doctor = Doctor.objects.get(id=id)
