@@ -26,26 +26,17 @@
                 <td>{{ specialty.id }}</td>
                 <td>{{ specialty.name }}</td>
                 <td>
-                    <a href=""><i class="fas fa-edit text-info mx-1"></i></a>                    
-                    <a href="{% url 'delete_specialty' specialty.id %}"><i class="fas fa-trash text-danger mx-1"></i></a>
-
-                    
+                    <a href="{% url 'edit_specialty' specialty.id %}"><i class="fas fa-edit text-info mx-1"></i></a>                    
+                    <a href="{% url 'delete_specialty' specialty.id %}"><i class="fas fa-trash text-danger mx-1"></i></a>                    
                 </td>
-            </tr>
+            </tr>            
             {% endfor %}        
         </tbody>
     </table>
 </div>
 
-<!-- Modal -->
-<div
-    class="modal fade"
-    id="modalId"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="modalTitleId"
-    aria-hidden="true"
->
+<!-- Modal crear -->
+<div  class="modal fade" id="modalId" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
