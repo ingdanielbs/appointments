@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from . forms import DoctorForm
 from django.contrib import messages
 from doctors.models import Doctor
-from specialties.models import Specialty
 
 # Create your views here.
 def doctors(request):
