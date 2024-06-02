@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {% include 'doctors/form.html' %}
+        <button type="submit" class="btn btn-primary">Actualizar</button>        
+    </form>
+{% endblock %}
