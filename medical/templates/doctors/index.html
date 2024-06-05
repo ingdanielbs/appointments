@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<h3 class="text-center">Especialidades</h3>
+<h3 class="text-center">Doctores</h3>
 <!-- Button trigger modal -->
 <button
     type="button"
@@ -21,13 +21,13 @@
             </tr>
         </thead>
         <tbody>
-            {% for specialty in specialties %}    
+            {% for doctor in doctors %}    
             <tr>
-                <td>{{ specialty.id }}</td>
-                <td>{{ specialty.name }}</td>
+                <td>{{ doctor.id }}</td>
+                <td>{{ doctor.first_name }}</td>
                 <td>
-                    <a href="{% url 'edit_specialty' specialty.id %}"><i class="fas fa-edit text-info mx-1"></i></a>                    
-                    <a href="{% url 'delete_specialty' specialty.id %}"><i class="fas fa-trash text-danger mx-1"></i></a>
+                    <a href="{% url 'edit_doctor' doctor.id %}"><i class="fas fa-edit text-info mx-1"></i></a>                    
+                    <a href="{% url 'delete_doctor' doctor.id %}"><i class="fas fa-trash text-danger mx-1"></i></a>
 
                     
                 </td>
@@ -50,7 +50,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalTitleId">
-                    Registro de especialidad
+                    Registro de doctor
                 </h5>
                 <button
                     type="button"
@@ -62,7 +62,7 @@
             <div class="modal-body">
                 <form action="" method="post">
                 {% csrf_token %}
-                {% include 'specialties/form.html' %}
+                {% include 'doctors/form.html' %}
             </div>
             <div class="modal-footer">
                 <button

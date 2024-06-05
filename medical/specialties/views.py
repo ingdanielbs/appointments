@@ -27,3 +27,16 @@ def delete_specialty(request, id):
         messages.error(request, 'Ocurrió un error al eliminar la especialidad.')
         return redirect('specialties')
     
+def edit_specialty(request, id):
+    specialty = Specialty.objects.get(id=id)
+    form = SpecialtyForm(request.POST or None, instance=specialty)
+    if form.is_valid() and request.method == 'POST':
+        try:
+            form.save()
+            messages.success(request, 'Especialidad actualizada con éxito.')
+            return redirect('specialties')
+        except:
+            messages.error(request, 'Ocurrió un error al actualizar la especialidad.')
+            return redirect('specialties')
+    return render(request, "specialties/edit.html", {'form': form})
+    
