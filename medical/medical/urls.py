@@ -22,5 +22,6 @@ urlpatterns = [
     path('', views.loguear, name='loguear'),
     path('admin/', admin.site.urls),
     path('specialties/', include('specialties.urls')),
-    path('doctors/', include('doctors.urls'))
+    path('doctors/', include('doctors.urls')),
+    path('api/', include('specialties.urls')),
 ]
